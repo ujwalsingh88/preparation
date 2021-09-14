@@ -22,6 +22,7 @@ import com.java.preparation.service.FactoryService;
 import com.java.preparation.service.FilesService;
 import com.java.preparation.service.FutureTaskService;
 import com.java.preparation.service.HotelService;
+import com.java.preparation.service.JavaEight;
 import com.java.preparation.service.LinkedList;
 import com.java.preparation.service.MeandringArrayService;
 import com.java.preparation.service.OverloadingService;
@@ -107,6 +108,10 @@ public class TestController {
 	
 	@Resource(name="arrayProduct")
 	private ArrayProduct arrayProductService;
+	
+
+	@Resource(name="javaEight")
+	private JavaEight javaEightService;
 	
 	private Logger logger = Logger.getLogger(ExceptionService.class);
 	
@@ -399,6 +404,18 @@ public class TestController {
 	public void linkedListRotation() {
 		try {
 			linkedListRotationService.rotation();
+			
+		} catch (CustomException e) {
+			logger.error("Eror in Controller ::"+ e.getStackTrace());
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@RequestMapping(value="/javaEight")
+	public void javaEight() {
+		try {
+			javaEightService.testJava8Features();
 			
 		} catch (CustomException e) {
 			logger.error("Eror in Controller ::"+ e.getStackTrace());
