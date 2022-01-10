@@ -17,6 +17,7 @@ import com.java.preparation.service.CountDownLatchService;
 import com.java.preparation.service.CyclicBarrierService;
 import com.java.preparation.service.DeadLockService;
 import com.java.preparation.service.DeltaService;
+import com.java.preparation.service.ExcelColumnTitle;
 import com.java.preparation.service.ExceptionService;
 import com.java.preparation.service.FactoryService;
 import com.java.preparation.service.FilesService;
@@ -25,6 +26,7 @@ import com.java.preparation.service.HotelService;
 import com.java.preparation.service.JavaEight;
 import com.java.preparation.service.LinkedList;
 import com.java.preparation.service.MeandringArrayService;
+import com.java.preparation.service.MsTestnig;
 import com.java.preparation.service.OverloadingService;
 import com.java.preparation.service.OverridingService;
 import com.java.preparation.service.PolygonService;
@@ -109,9 +111,14 @@ public class TestController {
 	@Resource(name="arrayProduct")
 	private ArrayProduct arrayProductService;
 	
+	@Resource(name="excelService")
+	private ExcelColumnTitle excelColumnTitle;
 
 	@Resource(name="javaEight")
 	private JavaEight javaEightService;
+	
+	@Resource(name="msTestnig")
+	private MsTestnig msTestnig;
 	
 	private Logger logger = Logger.getLogger(ExceptionService.class);
 	
@@ -416,6 +423,28 @@ public class TestController {
 	public void javaEight() {
 		try {
 			javaEightService.testJava8Features();
+			
+		} catch (CustomException e) {
+			logger.error("Eror in Controller ::"+ e.getStackTrace());
+			e.printStackTrace();
+		}
+		
+	}
+	@RequestMapping(value="/msTesting")
+	public void msTesting() {
+		try {
+			msTestnig.startMstesting();
+			
+		} catch (CustomException e) {
+			logger.error("Eror in Controller ::"+ e.getStackTrace());
+			e.printStackTrace();
+		}
+		
+	}
+	@RequestMapping(value="/excelColumn")
+	public void excelColumn() {
+		try {
+			excelColumnTitle.excelColumn();
 			
 		} catch (CustomException e) {
 			logger.error("Eror in Controller ::"+ e.getStackTrace());
